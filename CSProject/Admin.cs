@@ -21,7 +21,8 @@
         
         public override string ToString()
         {
-            return "Name of Staff= " + NameOfStaff + ", hourlyRate= " + adminHourlyRate + ", HoursWorked= " + HoursWorked;
+            return "\nName of Staff: " + NameOfStaff + "\nadminHourlyRate: " + adminHourlyRate + "\nHoursWorked: " +
+                   HoursWorked + "\nBasicPay: " + BasicPay + "\nOvertime: " + Overtime + "\nTotalPay: " + TotalPay;
         }
     }
 }

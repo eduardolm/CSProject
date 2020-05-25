@@ -11,7 +11,7 @@ namespace CSProject
         {
             List<Staff> myStaff = new List<Staff>(); 
             string[] result = new string[2]; 
-            string path = "staff.txt"; 
+            string path = "E:\\Eduardo\\Documents\\RiderProjects\\CSProject\\CSProject\\bin\\Debug\\staff.txt"; 
             string[] separator = {", "};
             
             if (File.Exists(path))
@@ -21,10 +21,15 @@ namespace CSProject
                     while(sr.EndOfStream != true)
                     {
                         result = sr.ReadLine().Split(separator, StringSplitOptions.None);
-                        if(result[1] == "Manager")
-                            myStaff.Add(new Manager(result[0]));
-                        else if(result[1] == "Admin")
-                            myStaff.Add(new Admin(result[0]));
+                        switch (result[1])
+                        {
+                            case "Manager":
+                                myStaff.Add(new Manager(result[0]));
+                                break;
+                            case "Admin":
+                                myStaff.Add(new Admin(result[0]));
+                                break;
+                        }
                     }
                     sr.Close();
                 };

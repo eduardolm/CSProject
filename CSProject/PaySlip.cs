@@ -36,8 +36,8 @@
             string path;
             foreach (var f in myStaff)
             {
-                path = f.NameOfStaff + ".txt";
-                using (StreamWriter sw = new StreamWriter(path, false))
+                path = "E:\\Eduardo\\Documents\\RiderProjects\\CSProject\\CSProject\\bin\\Debug\\" + f.NameOfStaff + ".txt";
+                using (StreamWriter sw = new StreamWriter(path))
                 {
                     sw.WriteLine("PAYSLIP FOR {0} {1}", (MonthsOfYear)month, year);
                     sw.WriteLine("===================================");
@@ -61,13 +61,27 @@
         public void GenerateSummary(List<Staff> myStaff)
         {
             var result =
-                from staff in myStaff
-                where staff.HoursWorked < 10
-                orderby staff.NameOfStaff
-                select new {staff.NameOfStaff, staff.HoursWorked};
-            
-            
-        }
+                from f in myStaff
+                where f.HoursWorked < 10
+                orderby f.NameOfStaff ascending 
+                select new {f.NameOfStaff, f.HoursWorked};
 
+            string path = "E:\\Eduardo\\Documents\\RiderProjects\\CSProject\\CSProject\\bin\\Debug\\summary.txt";
+
+            using (StreamWriter sw = new StreamWriter(path, false))
+            {
+                sw.WriteLine("Staff with less than 10 working hours");
+                sw.WriteLine("");
+                foreach (var item in result)
+                {
+                    sw.WriteLine("Name of Staff: {0}, Hours Worked: {1}", item.NameOfStaff, item.HoursWorked);
+                }
+                sw.Close();
+            }
+        }
+        public override string ToString()
+        {
+            return "month: " + month + "year: " + year;
+        }
     }
 }
